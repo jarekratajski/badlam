@@ -13,7 +13,7 @@ public class DisplayContext implements Cloneable {
 
     private String context = "";
 
-    String lambdaSymbol;
+    String lambdaSymbol ="L";
 
 
     String presentLambda(Lambda l) {
