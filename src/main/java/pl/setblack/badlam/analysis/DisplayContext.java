@@ -9,11 +9,11 @@ import pl.setblack.badass.Politician;
 public class DisplayContext implements Cloneable {
     private final Map<String, CheatLambda> usedTerms = new HashMap<>();
     private HashSet<Lambda> seenLambdas = new HashSet<>();
-    private final String possibleTerms = "xyzabcdefghijklmnopqrstuvw";
-
     private String context = "";
 
+    String possibleTerms = "xyzabcdefghijklmnopqrstuvw";
     String lambdaSymbol ="L";
+    boolean useBracket = true;
 
 
     String presentLambda(Lambda l) {
