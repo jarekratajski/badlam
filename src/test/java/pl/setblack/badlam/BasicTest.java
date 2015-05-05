@@ -22,4 +22,13 @@ public class BasicTest {
                 .display(Basic::identity);
         assertThat(val, equalTo("Ux.x"));
     }
+
+    @Test
+    public void shouldDisplayEmbededLambda() {
+        String val = SmartDisplay
+                .get()
+                .withoutBrackets()
+                .display(Basic.applyIdentity);
+        assertThat(val, equalTo("Lx.x Ly.y"));
+    }
 }

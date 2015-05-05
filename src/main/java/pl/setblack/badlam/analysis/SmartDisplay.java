@@ -5,7 +5,9 @@ import pl.setblack.badlam.Lambda;
 public class SmartDisplay {
     private static final String allTerms = "abcdefghijklmnopqrstuvwxyz";
     public static final String PQ = generate("pq");
-
+    public static final String FXY = generate("fxyz");
+    public static final String FMN = generate("fmn");
+    public static final String FG = generate("fg");
     private final DisplayContext displayContext;
 
 

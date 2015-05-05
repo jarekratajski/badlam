@@ -10,6 +10,7 @@ public class EvaluatedLambda extends CheatLambda {
     public EvaluatedLambda(String evaluated, String var, DisplayContext ctx) {
         super(var,ctx);
         this.evaluated = evaluated;
+        //System.out.println("EV:"+evaluated);
     }
 
     @Override
