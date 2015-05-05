@@ -56,4 +56,13 @@ public class BooleanTest {
                 .display(result);
         assertThat(val, equalTo("Lx.Ly.y"));
     }
+    @Test
+    public void shouldDisplayTrueOrFalse() {
+        Lambda result = OR.apply(trueLambda).apply(falseLambda);
+        String val = SmartDisplay
+                .get()
+                .withoutBrackets()
+                .display(result);
+        assertThat(val, equalTo("Lx.Ly.x"));
+    }
 }

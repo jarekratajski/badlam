@@ -21,7 +21,6 @@ public class CheatLambda implements Lambda {
 
     @Override
     public Lambda apply(Lambda x) {
-        System.out.println("PRESENT:" + presentContent() + " =>   "+context.context +" @ " +x.toString() );
         if (x instanceof CheatLambda) {
             return new EvaluatedLambda(wrapInBrackets(
                     presentContent()
@@ -37,33 +36,26 @@ public class CheatLambda implements Lambda {
             } else {
                 final DisplayContext subContext = context.subContext();
                 return new LaziedLambda(
-                            (lambda)->{
-                                System.out.println("x="+x.getClass());
-                                System.out.println("lambda="+lambda.getClass());
-                                System.out.println("this=" + this.getClass());
-                                if ( this.variableName.equals(lambda.variableName)) {
-                                    return wrapInBrackets(presentContent() + " " + presentContent());
-                                } else {
-                                    return wrapInBrackets(presentContent() + " " + subContext.presentLambda(lambda));
+                        (lambda) -> {
+                            String resultRight = subContext.presentLambda(lambda);
+                            if (resultRight==null) {
+                                if ( lambda instanceof LaziedLambda ) {
+                                    if ( lambda.variableName.equals(this.variableName)) {
+                                        //this is surely bad - but works for simple cases
+                                        return wrapInBrackets(presentContent() + " " + presentContent());
+                                    }
+
                                 }
-                            },
-                                        variableName, subContext);
+                                final String key = ("["+lambda.getClass().toString()+"]");
+                                subContext.unknownLambdas.put(key,lambda);
+                                return wrapInBrackets(presentContent() + " " + key);
+                            } else {
+                                return wrapInBrackets(presentContent() + " " + resultRight);
+                            }
+                        },
+                        variableName, subContext);
                 //return new EvaluatedLamLbda(wrapInBrackets(presentContent() + " ?" ), variableName, context);
             }
-            //subContext.presentLambda( x);
-            /*if ( context.autoExpandLevel > 0 ) {
-                context.autoExpandLevel--;
-                return new EvaluatedLambda(this.context.presentLambdaInside(presentContent(), x), variableName, context);
-            } else {
-                final DisplayContext subContext =context.subContext();
-
-                return new EvaluatedLambda(context.presentLambdaInside(presentContent(), x), variableName, subContext);
-
-               // return new EvaluatedLambda(  x.present() , variableName, context.subContext());
-            }*/
-
-            //
-
         }
     }
 

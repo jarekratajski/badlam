@@ -13,6 +13,8 @@ public class DisplayContext implements Cloneable {
     private Map<Lambda,String> seenLambdas = new HashMap<>();
     Map<Class<? extends Lambda>, Lambda> seenLambdaClasses = new HashMap<>();
     String context = "";
+    Map<String,Lambda> unknownLambdas = new HashMap<>();
+
 
     String possibleTerms = "xyzabcdefghijklmnopqrstuvw";
     String lambdaSymbol ="L";
@@ -20,13 +22,23 @@ public class DisplayContext implements Cloneable {
     int autoExpandLevel = 10;
 
     String presentLambda(Lambda l) {
-        return presentLambdaInside("", l).get();
+        String val=  presentLambdaInside("", l).get();
+        for ( final String  unknown : unknownLambdas.keySet()) {
+            Lambda newLambda = unknownLambdas.get(unknown);
+            String newVal = seenLambdas.get(newLambda);
+            if ( newVal!=null) {
+                val = val.replace(unknown, newVal);
+            }
+
+        }
+        System.out.println("Result is:"+ val);
+        return val;
     }
 
     DisplayContext subContext() {
         final DisplayContext cloned = this.copy();
-        cloned.usedTerms = new HashMap<>();
-        cloned.usedTerms.putAll( this.usedTerms);
+       /* cloned.usedTerms = new HashMap<>();
+        cloned.usedTerms.putAll( this.usedTerms);*/
         cloned.context = "";
         return cloned;
     }
@@ -36,9 +48,8 @@ public class DisplayContext implements Cloneable {
             markSeen(l);
             Optional<CheatLambda> lambdaOpt = nextPossibleTermLambda();
             if (lambdaOpt.isPresent()) {
-                System.out.println("calling with:"+lambdaOpt.get().variableName);
                 Lambda result = l.apply(lambdaOpt.get());
-                System.out.println("called");
+
                 if (result instanceof CheatLambda) {
                     final String wasContext = context;
                     context = "";
@@ -48,19 +59,17 @@ public class DisplayContext implements Cloneable {
                     return see(l, presentLambdaInside(init, result).get());
                 }
             } else {
-                return ()->"...";
+                return see(l, "(...)");
             }
         } else {
             String seenVal = seenLambdas.get(l);
             if (seenVal == null) {
                 return ()->seenVal;
             } else {
-                System.out.println(" w dziupli ");
+
 
                 return ()-> {
-                    if (seenLambdas.get(l) == null) {
-                        System.out.println("nadal null");
-                    }
+
                     return seenLambdas.get(l);
                 };
             }
@@ -78,7 +87,7 @@ public class DisplayContext implements Cloneable {
     }
 
     private void markSeen(Lambda l) {
-        System.out.println("seen"+l.toString());
+
         this.seenLambdas.put(l,null);
     }
 

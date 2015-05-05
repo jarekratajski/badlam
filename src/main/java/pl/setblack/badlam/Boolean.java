@@ -9,5 +9,7 @@ public class Boolean {
 
     public static final Lambda and =
             (p)->(q)->p.apply(q).apply(p);
+    public static final Lambda OR =
+            (p)->(q)->p.apply(p).apply(q);
 
 }
