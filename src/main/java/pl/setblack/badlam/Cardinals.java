@@ -5,6 +5,10 @@ public class Cardinals {
 
     public static final Lambda SUCC = (n)->(f)->(x)->f.apply(n.apply(f).apply(x));
 
+    public static final Lambda PLUS = (m)->(n)->(f)->(x)->m.apply(f).apply(n.apply(f).apply(x));
+
+    public static final Lambda MULT = (m)->(n)->(f)->m.apply(n.apply(f));
+
     public static final Lambda fromInteger(int x) {
         assert x >=0 ;
         return applySucc(x, ZERO);

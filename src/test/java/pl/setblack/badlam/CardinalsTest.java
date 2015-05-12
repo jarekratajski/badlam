@@ -32,6 +32,20 @@ public class CardinalsTest {
     }
 
     @Test
+    public void shouldAdd4To5() {
+        Lambda result = Cardinals.PLUS.apply(Cardinals.fromInteger(4)).apply(Cardinals.fromInteger(5));
+
+        assertThat(Cardinals.toInteger(result), equalTo(9));
+    }
+
+    @Test
+    public void shouldMultiply3By7() {
+        Lambda result = Cardinals.MULT.apply(Cardinals.fromInteger(3)).apply(Cardinals.fromInteger(7));
+
+        assertThat(Cardinals.toInteger(result), equalTo(21));
+    }
+
+    @Test
     public void shouldConverTo0() {
         assertThat(Cardinals.toInteger(Cardinals.ZERO), equalTo(0));
     }
