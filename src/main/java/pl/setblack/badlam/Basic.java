@@ -7,4 +7,6 @@ public class Basic {
     }
 
     public static final Lambda applyIdentity = (y)->y.apply(Basic::identity);
+
+    public static final Lambda AUTOCALL = (x)->x.apply(x);
 }

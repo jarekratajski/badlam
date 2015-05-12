@@ -31,7 +31,6 @@ public class DisplayContext implements Cloneable {
             }
 
         }
-        System.out.println("Result is:"+ val);
         return val;
     }
 

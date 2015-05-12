@@ -5,6 +5,6 @@ public interface Lambda {
     Lambda apply( Lambda x);
 
     default String present() {
-        return "Lx.?" ;
+        return "\u03BBx.?" ;
     }
 }

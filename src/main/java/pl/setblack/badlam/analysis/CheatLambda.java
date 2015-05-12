@@ -42,9 +42,9 @@ public class CheatLambda implements Lambda {
                                 if ( lambda instanceof LaziedLambda ) {
                                     if ( lambda.variableName.equals(this.variableName)) {
                                         //this is surely bad - but works for simple cases
-                                        return wrapInBrackets(presentContent() + " " + presentContent());
+                                        System.out.println(x.getClass());
+                                        return wrapInBrackets(presentContent() + "_" + presentContent());
                                     }
-
                                 }
                                 final String key = ("["+lambda.getClass().toString()+"]");
                                 subContext.unknownLambdas.put(key,lambda);

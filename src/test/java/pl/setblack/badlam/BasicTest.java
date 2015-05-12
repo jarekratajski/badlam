@@ -24,11 +24,20 @@ public class BasicTest {
     }
 
     @Test
-    public void shouldDisplayEmbededLambda() {
+     public void shouldDisplayEmbededLambda() {
         String val = SmartDisplay
                 .get()
                 .withoutBrackets()
                 .display(Basic.applyIdentity);
         assertThat(val, equalTo("Lx.x Ly.y"));
+    }
+
+    @Test
+    public void shouldDisplayAutoCall() {
+        String val = SmartDisplay
+                .get()
+                .withoutBrackets()
+                .display(Basic.AUTOCALL);
+        assertThat(val, equalTo("Lx.x x"));
     }
 }
