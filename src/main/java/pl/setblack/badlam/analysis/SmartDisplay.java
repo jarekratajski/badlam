@@ -7,6 +7,9 @@ public class SmartDisplay {
     public static final String PQ = generate("pq");
     public static final String FXY = generate("fxyz");
     public static final String FMN = generate("fmn");
+    public static final String NF = generate("nfx");
+    public static final String MNF = generate("mnfx");
+
     public static final String FG = generate("fg");
     private final DisplayContext displayContext;
 
@@ -37,6 +40,24 @@ public class SmartDisplay {
         return new SmartDisplay(new DisplayContext());
     }
 
+    public static SmartDisplay web() {
+        return SmartDisplay.get().withLambdaSymbol();
+    }
+
+    public static SmartDisplay webF() {
+        return SmartDisplay.get().withLambdaSymbol().withSymbols(SmartDisplay.FXY);
+    }
+
+    public static SmartDisplay webN() {
+        return SmartDisplay.get().withLambdaSymbol().withSymbols(SmartDisplay.NF);
+    }
+    public static SmartDisplay webM() {
+        return SmartDisplay.get().withLambdaSymbol().withSymbols(SmartDisplay.MNF);
+    }
+
+    public static SmartDisplay webP() {
+        return SmartDisplay.get().withLambdaSymbol().withSymbols(SmartDisplay.PQ);
+    }
     public String display(Lambda l) {
         return displayContext.presentLambda(l);
     }
@@ -45,6 +66,10 @@ public class SmartDisplay {
         final DisplayContext cloned = displayContext.copy();
         cloned.lambdaSymbol = symbol;
         return new SmartDisplay(cloned);
+    }
+
+    public SmartDisplay withLambdaSymbol() {
+        return this.withLambdaSymbol("&#955;");
     }
 
     public SmartDisplay withoutBrackets() {

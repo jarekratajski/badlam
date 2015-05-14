@@ -69,4 +69,18 @@ public class CardinalsTest {
         assertThat(Cardinals.toInteger(maybe5), equalTo(5));
     }
 
+    /** test that is (a*b)==0 then (a==0) or (b==0)*/
+    @Test
+    public void theoremTest() {
+        Lambda left = a->b->Cardinals.IS_ZERO.apply(Cardinals.MULT.apply(a).apply(b));
+        Lambda right = a->b->Boolean.OR.apply(Cardinals.IS_ZERO.apply(a)).apply(Cardinals.IS_ZERO.apply(b));
+        Lambda theorem = a->b->
+                Boolean.OR.apply(Boolean.NOT.apply(left.apply(a).apply(b)))
+                .apply(right.apply(a).apply(b));
+        Lambda result = theorem.apply(Cardinals.fromInteger(5)).apply(Cardinals.fromInteger(1));
+        assertThat(Boolean.toBoolean(result), equalTo(java.lang.Boolean.TRUE));
+    }
+
+
+
 }

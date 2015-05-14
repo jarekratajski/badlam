@@ -78,4 +78,14 @@ public class BooleanTest {
     public void anyLambdaShouldThrowException() {
         toBoolean((x) -> (y) -> (z) -> z);
     }
+
+    @Test
+    public void toNotTrueIsFalse() {
+        assertThat(toBoolean(NOT.apply(TRUELAMBDA)), equalTo(java.lang.Boolean.FALSE));
+    }
+
+    @Test
+    public void toNotFalseIsTrue() {
+        assertThat(toBoolean(NOT.apply(FALSELAMBDA)), equalTo(java.lang.Boolean.TRUE));
+    }
 }

@@ -13,4 +13,5 @@ public class Combinator {
                 return inner.apply(inner);
             };
 
+
 }

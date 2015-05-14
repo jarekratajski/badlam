@@ -12,6 +12,9 @@ public class Boolean {
     public static final Lambda OR =
             (p)->(q)->p.apply(p).apply(q);
 
+    public static final Lambda NOT =
+            (p)->(a)->(b)->p.apply(b).apply(a);
+
 
     public static boolean toBoolean( final Lambda lambda ) {
         final Lambda test1 = new Lambda() {
