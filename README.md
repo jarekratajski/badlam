@@ -6,6 +6,13 @@ This small research project may be used to play with
 untyped lambda calculus in Java.
 Main goal is to create develop unintrusive display utility
 for Lambdas (SmartDisplay)).
+==
+There is strong guarantee that this software does not work.
+(because if undecidability).
+==
+Nevertheless, for some simple Lambdas it might be working.
+Please, refer to unit test for usage patterns.
+
 
 #Sample code
     Lambda trueLambda =
