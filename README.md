@@ -25,4 +25,6 @@ Please, refer to unit test for usage patterns.
     System.out.println(
         SmartDisplay.displayLambda(result) );
 
-
+Presentation at Voxxed Days Zurich (March 2016)
+==
+https://www.youtube.com/watch?v=Dun8ewSeX6c
