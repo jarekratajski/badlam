@@ -6,6 +6,7 @@
     <groupId>pl.setblack</groupId>
     <artifactId>badlam</artifactId>
     <version>1.0.0</version>
+    <name>Badlam</name>
     <description>Lambda expression analysis</description>
     <url>https://github.com/jarekratajski/badlam</url>
     <scm>
